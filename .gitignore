@@ -12,8 +12,6 @@
 
 # Package Files #
 *.jar
-# not the datadog java agent
-!datadog/dd-java-agent.jar
 *.war
 *.ear
 *.zip
@@ -25,3 +23,22 @@ hs_err_pid*
 
 # OSX
 .DS_Store
+
+# gradle from https://github.com/github/gitignore/blob/master/Gradle.gitignore
+.gradle
+/build/
+
+# Ignore Gradle GUI config
+gradle-app.setting
+
+# Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
+!gradle-wrapper.jar
+
+# Cache of project
+.gradletasknamecache
+
+# # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
+# gradle/wrapper/gradle-wrapper.properties
+
+# not the datadog java agent
+!datadog/dd-java-agent.jar
