@@ -37,10 +37,11 @@ own DD API key.
 
 ## Run the Java example
 - Run `./gradlew build` (or `gradlew.bat` if on windows)
-- Set an environment variable with the DD docker agent IP: ```
-  DD_AGENT_IP_ADDR=`docker inspect -f
-  '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' dd-agent`
-```
+- Set an environment variable with the DD docker agent IP:
+  ```
+    DD_AGENT_IP_ADDR=`docker inspect -f
+    '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' dd-agent`
+  ```
 - Run to build the docker image: `docker build -t dd-java-apm --build-arg DD_AGENT_IP=$DD_AGENT_IP_ADDR .`
 - Run to start the container:
   ```
