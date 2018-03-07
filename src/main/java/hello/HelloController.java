@@ -18,6 +18,13 @@ public class HelloController {
     @Trace
     public String home() {
         this.slow();
+        try {
+          // between 1000 and 5000ms
+          int random = (int )(Math.random() * 5000 + 1000);
+          Thread.sleep(random);
+        } catch (Exception e) {
+          return "Kelnerhax: don't wanna sleep";
+        }
         return "Hello!";
     }
 
@@ -25,7 +32,9 @@ public class HelloController {
     @Trace
     public String slow() {
         try {
-          Thread.sleep(5000);
+          // between 500 and 5000ms
+          int random = (int )(Math.random() * 5000 + 500);
+          Thread.sleep(random);
         } catch (Exception e) {
           return "Kelnerhax: he ain't sleepy";
         }
