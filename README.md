@@ -37,9 +37,11 @@ own DD API key.
 
 ## Run the Java example
 - Run `./gradlew build` (or `gradlew.bat` if on windows)
-- Run to build the docker image: ```DD_AGENT_IP_ADDR=`docker inspect -f
-'{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' dd-agent` docker
-build -t dd-java-apm --build-arg DD_AGENT_IP=$DD_AGENT_IP_ADDR .```
+- Set an environment variable with the DD docker agent IP: ```
+  DD_AGENT_IP_ADDR=`docker inspect -f
+  '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' dd-agent`
+```
+- Run to build the docker image: `docker build -t dd-java-apm --build-arg DD_AGENT_IP=$DD_AGENT_IP_ADDR .`
 - Run to start the container:
   ```
   docker run -d -p 8081:8080 --rm --name dd-java-apm dd-java-apm \
@@ -60,3 +62,13 @@ build -t dd-java-apm --build-arg DD_AGENT_IP=$DD_AGENT_IP_ADDR .```
     - http://localhost:8081/sleepy
 - Visit [Datadog APM env:demo](https://app.datadoghq.com/apm/services?env=demo)
 and the `dd-java-apm-example-openjdk` service should be listed.
+
+## Noteworthy
+- As an unauthenticated GitHub request, you may see:
+  ```
+  {
+    "message": "API rate limit exceeded for 76.97.244.208. (But here's the good news: Authenticated requests get a higher rate limit. Check out the documentation for more details.)",
+    "documentation_url": "https://developer.github.com/v3/#rate-limiting"
+  }
+  ```
+  Pretty quickly when executing `/lookup`
