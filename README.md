@@ -60,15 +60,16 @@ own DD API key.
 - Hit these web urls locally to generate some APM metrics and traces:
     - http://localhost:8081
     - http://localhost:8081/sleepy
+      - **Noteworthy**
+        - As an unauthenticated GitHub request, you may see:
+          ```
+          {
+            "message": "API rate limit exceeded for 76.97.244.208. (But here's the good news: Authenticated requests get a higher rate limit. Check out the documentation for more details.)",
+            "documentation_url": "https://developer.github.com/v3/#rate-limiting"
+          }
+          ```
+          Pretty quickly when executing `/lookup` -- this will result in a `500`
+          from this application since it isn't doing any proper exception
+          handling
 - Visit [Datadog APM env:demo](https://app.datadoghq.com/apm/services?env=demo)
 and the `dd-java-apm-example-openjdk` service should be listed.
-
-## Noteworthy
-- As an unauthenticated GitHub request, you may see:
-  ```
-  {
-    "message": "API rate limit exceeded for 76.97.244.208. (But here's the good news: Authenticated requests get a higher rate limit. Check out the documentation for more details.)",
-    "documentation_url": "https://developer.github.com/v3/#rate-limiting"
-  }
-  ```
-  Pretty quickly when executing `/lookup`
