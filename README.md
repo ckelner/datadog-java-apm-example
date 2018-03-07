@@ -39,8 +39,7 @@ own DD API key.
 - Run `./gradlew build` (or `gradlew.bat` if on windows)
 - Set an environment variable with the DD docker agent IP:
   ```
-    DD_AGENT_IP_ADDR=`docker inspect -f
-    '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' dd-agent`
+    DD_AGENT_IP_ADDR=`docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' dd-agent`
   ```
 - Run to build the docker image: `docker build -t dd-java-apm --build-arg DD_AGENT_IP=$DD_AGENT_IP_ADDR .`
 - Run to start the container:
@@ -74,3 +73,6 @@ own DD API key.
           handling
 - Visit [Datadog APM env:demo](https://app.datadoghq.com/apm/services?env=demo)
 and the `dd-java-apm-example-openjdk` service should be listed.
+  - The "home" (e.g. `http://localhost:8081/`) request mapping should result in
+    a flame graph that looks like:
+    ![flame](https://i.imgur.com/BOlgkmc.png)
